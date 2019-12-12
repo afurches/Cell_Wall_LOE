@@ -142,7 +142,7 @@ print('Number of anchor genes and phenos: ' + str(len(anchors)) + '\n')
 for layer in layer_list:
     current_layer = filedict[layer]
     print('Scoring ' + current_layer + ' layer.')
-    #keep track of edges to avoid scoring recprocal edges
+    #keep track of edges to avoid scoring reciprocal edges
     recip_dict = defaultdict(lambda: defaultdict(str))
     with open(layer,'r') as lf:
         for line in lf:
