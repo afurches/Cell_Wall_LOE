@@ -4,10 +4,13 @@
 Created on Thu Jul 18 11:34:41 2019
 Edited December 11 2019
 
+
+
 calculate_LOE_scores.py
 
-A script to calculate multiple Lines of Evidence (LOE) scores for every gene in the genome.
-Originally developed in Perl by Deborah Weighill. 
+
+
+A script to calculate multiple Lines of Evidence (LOE) scores for each gene in a genome, developed in Perl by Deborah Weighill. 
     Weighill, D., Jones, P., Shah, M., Ranjan, P., Muchero, W., Schmutz, J., et al. (2018). 
     Pleiotropic and Epistatic Network-Based Discovery: Integrated Networks for Target Gene Discovery. 
     Front. Energy Res. 6, 267997. doi:10.3389/fenrg.2018.00030.
@@ -17,7 +20,7 @@ Adapted for Python and public release by Anna Furches.
     Joubert, W., Shah, M., Streich, J., Ranjan, P., Schmutz, J., Sreedasyam, A., Macaya-Sanz, D., Zhao, N., 
     Martin, M.Z., Rao, X., Dixon, R.A., DiFazio, S., Tschaplinski, T.J., Chen, J-C., Tuskan, G.A., Jacobson, D.
     Finding New Cell Wall Regulatory Genes in Populus trichocarpa Using Multiple Lines of Evidence.
-    Front. Plant Sci. (in review).
+    Front. Plant Sci. 08 October 2019. doi:10.3389/fpls.2019.01249.
 
 
 
@@ -79,7 +82,6 @@ import pandas as pd
 
 # LOAD INPUT FILES
 filepaths = sys.argv[1]
-
 with open(filepaths,'r') as fp:
     filelist = [i.strip('\n') for i in fp]
 print('\nINPUT FILES:\n  ' + '\n  '.join(filelist) + '\n')
