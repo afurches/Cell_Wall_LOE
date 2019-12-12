@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jul 18 11:34:41 2019
-Edited Dec 11 2019
+Edited December 11 2019
 
 calculate_LOE_scores.py
 
@@ -67,6 +67,7 @@ each gene id in the "GENES TO BE SCORED" file.
     - output file (scores table) will be named as follows: genes_<other_text_of_arbitrary_length>_LOEscores.txt
     - self loops and reciprocal edges are NOT included in LOE scores 
 """
+
 
 
 #LOAD LIBRARIES
@@ -139,6 +140,7 @@ print('Number of anchor genes and phenos: ' + str(len(anchors)) + '\n')
 
 
 # CALCULATE LOE SCORES
+print('** SCORING LAYERS **')
 for layer in layer_list:
     current_layer = filedict[layer]
     print('Scoring ' + current_layer + ' layer.')
@@ -183,28 +185,23 @@ for layer in layer_list:
 # CREATE LOE SCORES TABLE
 print('Tallying final scores.\n')
             
-
 # convert breadth scores dictionary to pandas dataframe
 br_df = pd.DataFrame.from_dict(breadth_dict,orient='index',dtype=int)
-br_df['breadth_tot'] = br_df.sum(axis=1) #changed
-br_df.reset_index(inplace=True) #changed
-br_df.rename(columns={'index':'geneID'},inplace=True) #changed
-
+br_df['breadth_tot'] = br_df.sum(axis=1)
+br_df.reset_index(inplace=True)
+br_df.rename(columns={'index':'geneID'},inplace=True)
 
 # convert depth scores dictionary to pandas dataframe
 dep_df = pd.DataFrame.from_dict(depth_dict,orient='index',dtype=int)
-dep_df['depth_tot'] = dep_df.sum(axis=1) #changed
-dep_df.reset_index(inplace=True) #changed
-dep_df.rename(columns={'index':'geneID'},inplace=True) #changed
+dep_df['depth_tot'] = dep_df.sum(axis=1)
+dep_df.reset_index(inplace=True)
+dep_df.rename(columns={'index':'geneID'},inplace=True)
 
-
-# concatenate depth scores dataframe onto breadth scores dataframe
-LOE_scores = br_df[['geneID','breadth_tot']].merge(dep_df,how='outer',on='geneID') #changed
+# merge breadth and depth scores dataframes
+LOE_scores = br_df[['geneID','breadth_tot']].merge(dep_df,how='outer',on='geneID')
 LOE_scores.set_index('geneID',inplace=True)
-LOE_scores = LOE_scores.fillna(0).astype(int) #changed
-
+LOE_scores = LOE_scores.fillna(0).astype(int)
 print('Number of genes in scores table: ' + str(len(LOE_scores)))
-#print('Test for Potri.001G000800.v3.0: ' + str(LOE_scores.loc['Potri.001G000800.v3.0']))
 print('Preview of scores table:\n' + str(LOE_scores.head(3)) + '\n')
 
 
