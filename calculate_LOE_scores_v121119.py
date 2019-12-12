@@ -65,14 +65,12 @@ each gene id in the "GENES TO BE SCORED" file.
         - EXAMPLE: path/to/file/coex_extrawords_somedate.sif ==> translates to column label "depth_coex"
         - EXAMPLE: path/to/file/metab-GWAS_extrawords_somedate.sif ==> translates to column label "depth_metab-GWAS"
     - output file (scores table) will be named as follows: genes_<other_text_of_arbitrary_length>_LOEscores.txt
-    - self loops and reciprocal edges are NOT included in LOE scores
-    - anchor genes 
+    - self loops and reciprocal edges are NOT included in LOE scores 
 """
 
 
 #LOAD LIBRARIES
 import sys
-import os
 from collections import defaultdict
 import pandas as pd
 
